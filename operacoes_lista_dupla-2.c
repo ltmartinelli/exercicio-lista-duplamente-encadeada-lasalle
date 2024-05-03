@@ -57,7 +57,7 @@ No *inserir_final(No *lista, No *novo)
   return lista;
 }
 
-// INSERIR POSICAO (REVISAR O VIDEO)
+// INSERIR POSICAO (TODO)
 No *inserir_posicao(No *lista, No *novo, int posicao)
 {
   No *aux = lista;
@@ -69,22 +69,22 @@ No *inserir_posicao(No *lista, No *novo, int posicao)
   else
   {
     int cont = 1;
-    while (aux->proximo != lista && cont <= posicao)
+    do
     {
       aux = aux->proximo;
       cont++;
-    }
+    } while (aux != lista && cont < posicao);
     // Inclusao no ultimo
-    if (aux->proximo->proximo == lista)
+    if (aux == lista)
     {
       inserir_final(lista, novo);
     }
     else
     {
-      aux = aux->proximo;
-      novo->anterior = aux;
-      novo->proximo = aux->proximo;
-      aux->proximo = novo;
+      novo->proximo = aux;
+      novo->anterior = aux->anterior;
+      aux->anterior->proximo = novo;
+      aux->anterior = novo;
     }
   }
   return lista;
@@ -117,6 +117,8 @@ int main()
 
   lista = inserir_inicio(lista, n);
   lista = inserir_final(lista, n2);
-  lista = inserir_posicao(lista, n3,2);
+  lista = inserir_final(lista, n3);
+  lista = inserir_posicao(lista, n4, 10);
+
   percorrer_lista(lista);
 }
