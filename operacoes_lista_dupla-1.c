@@ -14,12 +14,12 @@ typedef struct No{
 
 void apresenta_lista_inversa(No * lista){
   //Percorrendo os elementos da lista na ordem inversa
-   int cont = 0;
+   int cont = 1;
     while (lista -> proximo != NULL){
       cont++;
       lista = lista->proximo;
     }
-    while(cont >= 0){
+    while(lista != NULL){
        printf("Idade do elemento %d, %d \n", cont, lista->idade);
        cont--;
        lista = lista -> anterior;
@@ -64,7 +64,7 @@ No * insere_ultimo(No * lista, No * novo){
 
 void apresenta_lista(No * lista){
   //Percorrendo os elementos da lista
-   int cont = 0;
+   int cont = 1;
    while (lista != NULL){
       printf("Idade do elemento %d, %d \n", cont, lista->idade);
       cont++;
