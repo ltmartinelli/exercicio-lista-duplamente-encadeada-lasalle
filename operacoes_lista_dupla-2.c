@@ -18,6 +18,7 @@ No *criar_elemento(int idade)
   return novo;
 }
 
+//INSERIR INICIO
 No *inserir_inicio(No *lista, No *novo)
 {
   if(lista == NULL)
@@ -36,6 +37,33 @@ No *inserir_inicio(No *lista, No *novo)
   }
   return lista;
 }
+
+// INSERIR FINAL
+No *inserir_final(No *lista, No *novo)
+{
+  if(lista == NULL)
+  {
+    lista = novo;
+    lista->proximo = lista;
+    lista->anterior = lista;
+  }
+  else
+  {
+    novo->proximo = lista;
+    novo->anterior = lista->anterior;
+    lista->anterior->proximo = novo;
+    lista->anterior = novo;
+  }
+  return lista;
+}
+
+
+
+// INSERIR POSICAO
+
+// REMOVE INICIO
+// REMOVE FINAL
+// REMOVE POSICAO
 
 void percorrer_lista(No *lista)
 {
@@ -60,7 +88,7 @@ int main()
 
   lista = inserir_inicio(lista, n);
   lista = inserir_inicio(lista, n2);
-  lista = inserir_inicio(lista, n3);
+  lista = inserir_final(lista, n3);
   percorrer_lista(lista);
 
 }
