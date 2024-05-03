@@ -18,10 +18,10 @@ No *criar_elemento(int idade)
   return novo;
 }
 
-//INSERIR INICIO
+// INSERIR INICIO
 No *inserir_inicio(No *lista, No *novo)
 {
-  if(lista == NULL)
+  if (lista == NULL)
   {
     lista = novo;
     lista->proximo = lista;
@@ -41,7 +41,7 @@ No *inserir_inicio(No *lista, No *novo)
 // INSERIR FINAL
 No *inserir_final(No *lista, No *novo)
 {
-  if(lista == NULL)
+  if (lista == NULL)
   {
     lista = novo;
     lista->proximo = lista;
@@ -57,9 +57,38 @@ No *inserir_final(No *lista, No *novo)
   return lista;
 }
 
-
-
-// INSERIR POSICAO
+// INSERIR POSICAO (REVISAR O VIDEO)
+No *inserir_posicao(No *lista, No *novo, int posicao)
+{
+  No *aux = lista;
+  // Inclusao no inicio
+  if (posicao == 1)
+  {
+    lista = inserir_inicio(lista, novo);
+  }
+  else
+  {
+    int cont = 1;
+    while (aux->proximo != lista && cont <= posicao)
+    {
+      aux = aux->proximo;
+      cont++;
+    }
+    // Inclusao no ultimo
+    if (aux->proximo->proximo == lista)
+    {
+      inserir_final(lista, novo);
+    }
+    else
+    {
+      aux = aux->proximo;
+      novo->anterior = aux;
+      novo->proximo = aux->proximo;
+      aux->proximo = novo;
+    }
+  }
+  return lista;
+}
 
 // REMOVE INICIO
 // REMOVE FINAL
@@ -87,8 +116,7 @@ int main()
   No *n4 = criar_elemento(55);
 
   lista = inserir_inicio(lista, n);
-  lista = inserir_inicio(lista, n2);
-  lista = inserir_final(lista, n3);
+  lista = inserir_final(lista, n2);
+  lista = inserir_posicao(lista, n3,2);
   percorrer_lista(lista);
-
 }
