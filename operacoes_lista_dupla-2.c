@@ -194,6 +194,23 @@ void percorrer_lista(No *lista)
   }
 }
 
+void percorrer_lista_inversa(No *lista)
+{
+  if (lista != NULL)
+  {
+    No *ptr = lista->anterior;
+    do
+    {
+      printf("%d\n", ptr->idade);
+      ptr = ptr->anterior;
+    } while (ptr != lista->anterior);
+  }
+  else
+  {
+    printf("Lista vazia!");
+  }
+}
+
 int main()
 {
   No *lista = NULL;
@@ -207,9 +224,13 @@ int main()
   lista = inserir_posicao(lista, n3, 2);
   lista = inserir_final(lista, n4);
 
+  percorrer_lista(lista);
+  percorrer_lista_inversa(lista);
+
   lista = remover_posicao(lista, 2);
   lista = remover_inicio(lista);
   lista = remover_final(lista);
-
+  
   percorrer_lista(lista);
+  percorrer_lista_inversa(lista);
 }
