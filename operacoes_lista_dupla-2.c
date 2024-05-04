@@ -57,7 +57,7 @@ No *inserir_final(No *lista, No *novo)
   return lista;
 }
 
-// INSERIR POSICAO (TODO)
+// INSERIR POSICAO
 No *inserir_posicao(No *lista, No *novo, int posicao)
 {
   No *aux = lista;
@@ -90,8 +90,24 @@ No *inserir_posicao(No *lista, No *novo, int posicao)
   return lista;
 }
 
+No *remover_final(No *lista)
+{
+  No *no_a_deletar = lista->anterior;
+  if (lista != NULL && no_a_deletar->proximo != no_a_deletar)
+  {
+    no_a_deletar->anterior->proximo = lista;
+    lista->anterior = no_a_deletar->anterior;
+    free(no_a_deletar);
+  }
+  else
+  {
+    lista = NULL;
+    free(no_a_deletar);
+  }
+  return lista;
+}
+
 // REMOVE INICIO
-// REMOVE FINAL
 // REMOVE POSICAO
 
 void percorrer_lista(No *lista)
@@ -104,6 +120,10 @@ void percorrer_lista(No *lista)
       printf("%d\n", ptr->idade);
       ptr = ptr->proximo;
     } while (ptr != lista);
+  }
+  else
+  {
+    printf("Lista vazia!");
   }
 }
 
@@ -118,7 +138,8 @@ int main()
   lista = inserir_inicio(lista, n);
   lista = inserir_final(lista, n2);
   lista = inserir_final(lista, n3);
-  lista = inserir_posicao(lista, n4, 10);
+  lista = inserir_posicao(lista, n4, 2);
+  lista = remover_final(lista);
 
   percorrer_lista(lista);
 }
