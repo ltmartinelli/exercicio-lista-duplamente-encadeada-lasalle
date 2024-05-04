@@ -92,18 +92,46 @@ No *inserir_posicao(No *lista, No *novo, int posicao)
 
 No *remover_final(No *lista)
 {
-  No *no_a_deletar = lista->anterior;
-  if (lista != NULL && no_a_deletar->proximo != no_a_deletar)
+  if(lista == NULL)
   {
-    no_a_deletar->anterior->proximo = lista;
-    lista->anterior = no_a_deletar->anterior;
-    free(no_a_deletar);
+    return lista;
+  }
+
+  No *no_a_deletar = lista->anterior;
+
+  if (no_a_deletar->proximo == no_a_deletar)
+  {
+    lista = NULL;
   }
   else
   {
-    lista = NULL;
-    free(no_a_deletar);
+    no_a_deletar->anterior->proximo = lista;
+    lista->anterior = no_a_deletar->anterior;
   }
+  free(no_a_deletar);
+  return lista;
+}
+
+No *remover_inicio(No *lista)
+{
+  if(lista == NULL)
+  {
+    return lista;
+  }
+
+  No *no_a_deletar = lista;
+
+  if (no_a_deletar->anterior == no_a_deletar)
+  {
+    lista = NULL;
+  }
+  else
+  {
+    no_a_deletar->proximo->anterior = no_a_deletar->anterior;
+    no_a_deletar->anterior->proximo = no_a_deletar->proximo;
+    lista = no_a_deletar->proximo;
+  }
+  free(no_a_deletar);
   return lista;
 }
 
@@ -139,7 +167,7 @@ int main()
   lista = inserir_final(lista, n2);
   lista = inserir_final(lista, n3);
   lista = inserir_posicao(lista, n4, 2);
-  lista = remover_final(lista);
+  lista = remover_inicio(lista);
 
   percorrer_lista(lista);
 }
