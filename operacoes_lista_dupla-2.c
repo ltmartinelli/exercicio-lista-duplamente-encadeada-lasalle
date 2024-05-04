@@ -90,9 +90,10 @@ No *inserir_posicao(No *lista, No *novo, int posicao)
   return lista;
 }
 
+// REMOVER FINAL
 No *remover_final(No *lista)
 {
-  if(lista == NULL)
+  if (lista == NULL)
   {
     return lista;
   }
@@ -112,9 +113,10 @@ No *remover_final(No *lista)
   return lista;
 }
 
+// REMOVER INICIO
 No *remover_inicio(No *lista)
 {
-  if(lista == NULL)
+  if (lista == NULL)
   {
     return lista;
   }
@@ -135,8 +137,45 @@ No *remover_inicio(No *lista)
   return lista;
 }
 
-// REMOVE INICIO
 // REMOVE POSICAO
+No *remover_posicao(No *lista, int posicao)
+{
+  if (lista == NULL)
+  {
+    return lista;
+  }
+
+  No *aux = lista;
+
+  // remocao no inicio
+  if (posicao == 1)
+  {
+    lista = remover_inicio(lista);
+  }
+  else
+  {
+    int cont = 1;
+    do
+    {
+      aux = aux->proximo;
+      cont++;
+    } while (aux != lista && cont < posicao);
+    // remocao no ultimo
+    if (aux == lista)
+    {
+      remover_final(lista);
+    }
+    else
+    {
+      aux->proximo->anterior = aux->anterior;
+      aux->anterior->proximo = aux->proximo;
+      free(aux);
+    }
+  }
+  return lista;
+}
+
+// IMPRIMIR LISTA
 
 void percorrer_lista(No *lista)
 {
@@ -165,9 +204,12 @@ int main()
 
   lista = inserir_inicio(lista, n);
   lista = inserir_final(lista, n2);
-  lista = inserir_final(lista, n3);
-  lista = inserir_posicao(lista, n4, 2);
+  lista = inserir_posicao(lista, n3, 2);
+  lista = inserir_final(lista, n4);
+
+  lista = remover_posicao(lista, 2);
   lista = remover_inicio(lista);
+  lista = remover_final(lista);
 
   percorrer_lista(lista);
 }
