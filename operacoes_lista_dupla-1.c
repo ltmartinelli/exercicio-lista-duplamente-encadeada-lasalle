@@ -135,7 +135,7 @@ No * insere_na_lista(No * lista, No * novo, int posicao){
  int main() {
    // Criando referencia para a lista
    No *lista = NULL;
-   // criar um lista apontada por n com o primerio elemento
+   // criar um lista apontada por n com o primeiro elemento
    No *n = criar_elemento(35);
    No *n2 = criar_elemento(50);
    No *n3 = criar_elemento(30);
@@ -147,6 +147,7 @@ No * insere_na_lista(No * lista, No * novo, int posicao){
    lista = insere_ultimo(lista, n3);
    lista = insere_ultimo(lista, n4);
    lista = insere_primeiro(lista, n5);
+   
    printf("\nApresentando lista inversa\n");
 
    ////////////////////////////

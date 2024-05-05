@@ -61,7 +61,6 @@ No *inserir_final(No *lista, No *novo)
 No *inserir_posicao(No *lista, No *novo, int posicao)
 {
   No *aux = lista;
-  // Inclusao no inicio
   if (posicao == 1)
   {
     lista = inserir_inicio(lista, novo);
@@ -74,7 +73,6 @@ No *inserir_posicao(No *lista, No *novo, int posicao)
       aux = aux->proximo;
       cont++;
     } while (aux != lista && cont < posicao);
-    // Inclusao no ultimo
     if (aux == lista)
     {
       inserir_final(lista, novo);
@@ -147,7 +145,6 @@ No *remover_posicao(No *lista, int posicao)
 
   No *aux = lista;
 
-  // remocao no inicio
   if (posicao == 1)
   {
     lista = remover_inicio(lista);
@@ -160,7 +157,6 @@ No *remover_posicao(No *lista, int posicao)
       aux = aux->proximo;
       cont++;
     } while (aux != lista && cont < posicao);
-    // remocao no ultimo
     if (aux == lista)
     {
       remover_final(lista);
@@ -226,12 +222,16 @@ int main()
   No *n4 = criar_elemento(7);
   No *n5 = criar_elemento(72);
 
-  // INSERÇÕES
-
+  printf("****************************************************************\n");
   printf("*******************\nINICIO DA DEMONSTRACAO\n*******************\n");
+  printf("****************************************************************\n");
+
+  // INSERÇÕES
 
   printf("\nApresentando lista vazia:\n");
   percorrer_lista(lista);
+
+  printf("*******************\nINSERÇÕES\n*******************\n");
 
   printf("Inserindo 31 no inicio:\n");
   lista = inserir_inicio(lista, n);
@@ -256,15 +256,40 @@ int main()
   printf("Apresentando lista inversa:\n");
   percorrer_lista_inversa(lista);
 
-  printf("Apresentando novamente o estado da lista antes das delecoes:\n");
+  printf("Apresentando novamente o estado da lista apos as insercoes, antes de fazer as remocoes:\n");
   percorrer_lista(lista);
 
   // REMOÇÕES
 
-  // lista = remover_posicao(lista, 2);
-  // lista = remover_inicio(lista);
-  // lista = remover_final(lista);
+  printf("*******************\nREMOCOES\n*******************\n");
 
-  // percorrer_lista(lista);
-  // percorrer_lista_inversa(lista);
+  printf("Removendo o primeiro item (12):\n");
+  lista = remover_inicio(lista);
+  percorrer_lista(lista);
+
+  printf("Removendo o ultimo item (72):\n");
+  lista = remover_final(lista);
+  percorrer_lista(lista);
+
+  printf("Removendo o item na posicaoo 2 (31):\n");
+  lista = remover_posicao(lista, 2);
+  percorrer_lista(lista);
+
+  printf("Removendo item em posicao maior que o tamanho da lista(deleta o ultimo, o 40):\n");
+  lista = remover_posicao(lista, 10);
+  percorrer_lista(lista);
+
+  printf("Removendo o unico item restante, lista fica vazia:\n");
+  lista = remover_inicio(lista);
+  percorrer_lista(lista);
+
+  printf("Tentando utilizar os metodos de remocao com a lista vazia:\n\n");
+  lista = remover_inicio(lista);
+  percorrer_lista(lista);
+
+  lista = remover_final(lista);
+  percorrer_lista(lista);
+
+  lista = remover_posicao(lista, 1);
+  percorrer_lista(lista);
 }
