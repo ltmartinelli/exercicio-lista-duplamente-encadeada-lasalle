@@ -75,7 +75,7 @@ No *inserir_posicao(No *lista, No *novo, int posicao)
     } while (aux != lista && cont < posicao);
     if (aux == lista)
     {
-      inserir_final(lista, novo);
+      inserir_final(lista,novo);
     }
     else
     {
@@ -159,7 +159,7 @@ No *remover_posicao(No *lista, int posicao)
     } while (aux != lista && cont < posicao);
     if (aux == lista)
     {
-      remover_final(lista);
+      printf("A lista possui apenas %d elementos.\n", cont-1);
     }
     else
     {
@@ -228,10 +228,10 @@ int main()
 
   // INSERÇÕES
 
-  printf("\nApresentando lista vazia:\n");
+  printf("\nApresentando lista vazia:\n\n");
   percorrer_lista(lista);
 
-  printf("*******************\nINSERÇÕES\n*******************\n");
+  printf("*******************\nINSERCOES\n*******************\n");
 
   printf("Inserindo 31 no inicio:\n");
   lista = inserir_inicio(lista, n);
@@ -249,7 +249,7 @@ int main()
   lista = inserir_posicao(lista, n4, 2);
   percorrer_lista(lista);
 
-  printf("Inserindo 72 em uma posicao maior do que o tamanho da lista (insere no final):\n");
+  printf("Tentando inserir 72 em uma posicao maior do que o tamanho da lista(insere no final):\n");
   lista = inserir_posicao(lista, n5, 10);
   percorrer_lista(lista);
 
@@ -271,12 +271,16 @@ int main()
   lista = remover_final(lista);
   percorrer_lista(lista);
 
-  printf("Removendo o item na posicaoo 2 (31):\n");
+  printf("Removendo o item na posicao 2 (31):\n");
   lista = remover_posicao(lista, 2);
   percorrer_lista(lista);
 
-  printf("Removendo item em posicao maior que o tamanho da lista(deleta o ultimo, o 40):\n");
+  printf("Tentando remover item em posicao maior que o tamanho da lista:\n");
   lista = remover_posicao(lista, 10);
+  percorrer_lista(lista);
+
+printf("Removendo na posicao 1:\n");
+  lista = remover_posicao(lista,1);
   percorrer_lista(lista);
 
   printf("Removendo o unico item restante, lista fica vazia:\n");
