@@ -184,7 +184,7 @@ void percorrer_lista(No *lista)
     No *ptr = lista;
     do
     {
-      printf("%d\n", ptr->idade);
+      printf("(%d)", ptr->idade);
       ptr = ptr->proximo;
     } while (ptr != lista);
   }
@@ -192,6 +192,7 @@ void percorrer_lista(No *lista)
   {
     printf("Lista vazia!");
   }
+  printf("\n\n");
 }
 
 void percorrer_lista_inversa(No *lista)
@@ -201,7 +202,7 @@ void percorrer_lista_inversa(No *lista)
     No *ptr = lista->anterior;
     do
     {
-      printf("%d\n", ptr->idade);
+      printf("(%d)", ptr->idade);
       ptr = ptr->anterior;
     } while (ptr != lista->anterior);
   }
@@ -209,28 +210,61 @@ void percorrer_lista_inversa(No *lista)
   {
     printf("Lista vazia!");
   }
+  printf("\n\n");
 }
 
 int main()
 {
+
+  // DEMONSTRAÇÃO DA LISTA CIRCULAR
+
+  // CRIANDO ELEMENTOS
   No *lista = NULL;
-  No *n = criar_elemento(35);
-  No *n2 = criar_elemento(50);
-  No *n3 = criar_elemento(30);
-  No *n4 = criar_elemento(55);
+  No *n = criar_elemento(31);
+  No *n2 = criar_elemento(40);
+  No *n3 = criar_elemento(12);
+  No *n4 = criar_elemento(7);
+  No *n5 = criar_elemento(72);
 
+  // INSERÇÕES
+
+  printf("*******************\nINICIO DA DEMONSTRACAO\n*******************\n");
+
+  printf("\nApresentando lista vazia:\n");
+  percorrer_lista(lista);
+
+  printf("Inserindo 31 no inicio:\n");
   lista = inserir_inicio(lista, n);
+  percorrer_lista(lista);
+
+  printf("Inserindo 40 no final:\n");
   lista = inserir_final(lista, n2);
-  lista = inserir_posicao(lista, n3, 2);
-  lista = inserir_final(lista, n4);
-
   percorrer_lista(lista);
+
+  printf("Inserindo 12 no inicio:\n");
+  lista = inserir_inicio(lista, n3);
+  percorrer_lista(lista);
+
+  printf("Inserindo 7 na posicao 2:\n");
+  lista = inserir_posicao(lista, n4, 2);
+  percorrer_lista(lista);
+
+  printf("Inserindo 72 em uma posicao maior do que o tamanho da lista (insere no final):\n");
+  lista = inserir_posicao(lista, n5, 10);
+  percorrer_lista(lista);
+
+  printf("Apresentando lista inversa:\n");
   percorrer_lista_inversa(lista);
 
-  lista = remover_posicao(lista, 2);
-  lista = remover_inicio(lista);
-  lista = remover_final(lista);
-  
+  printf("Apresentando novamente o estado da lista antes das delecoes:\n");
   percorrer_lista(lista);
-  percorrer_lista_inversa(lista);
+
+  // REMOÇÕES
+
+  // lista = remover_posicao(lista, 2);
+  // lista = remover_inicio(lista);
+  // lista = remover_final(lista);
+
+  // percorrer_lista(lista);
+  // percorrer_lista_inversa(lista);
 }
